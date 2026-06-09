@@ -2,6 +2,7 @@ module AlgebraCore
 
 export simplify,
        substitute,
+       isliteral,
        materialize,
        pushforward,
        differentiate
@@ -26,10 +27,18 @@ kept symbolic — and a binding may itself be an expression, splicing a subtree.
 function substitute end
 
 """
-    materialize(s, pairs::NamedTuple)
+    isliteral(s)
 
-Evaluate expression `s` to a concrete value, substituting the variable bindings
-in `pairs`.
+Whether expression `s` can be [`materialize`](@ref)d — i.e. contains no free
+symbols. A purely structural (type-level) predicate.
+"""
+function isliteral end
+
+"""
+    materialize(s)
+
+Evaluate a **literal** expression `s` (see [`isliteral`](@ref)) to a concrete
+value. Bind any free symbols first with [`substitute`](@ref).
 """
 function materialize end
 
