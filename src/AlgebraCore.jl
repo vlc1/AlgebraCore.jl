@@ -5,6 +5,7 @@ export simplify,
        isliteral,
        materialize,
        pushforward,
+       pullback,
        differentiate
 
 """
@@ -49,6 +50,15 @@ Forward-mode directional derivative (Jacobian–vector product) of expression `f
 with respect to variable `x`, along the input tangent `ẋ`.
 """
 function pushforward end
+
+"""
+    pullback(f, x, ȳ)
+
+Reverse-mode vector–Jacobian product of expression `f` with respect to variable
+`x`, propagating the output cotangent `ȳ`. The result lives in `x`'s value
+space.
+"""
+function pullback end
 
 """
     differentiate(f, x)
